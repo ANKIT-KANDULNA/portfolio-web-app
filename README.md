@@ -1,16 +1,41 @@
-# myportfolio
+# 🌐 Portfolio Website
 
-A new Flutter project.
+This is my personal **portfolio website** built using **Flutter Web**.  
+It highlights my skills, projects, and experience as a **Computer Science undergraduate and aspiring software developer**.
 
-## Getting Started
+The goal of this project is to present my work in a clean, modern, and responsive way while learning real-world deployment and CI/CD practices.
 
-This project is a starting point for a Flutter application.
+🔗 **Live Website**  
+https://portfolio-web-app-4d7fb.web.app
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 👨‍💻 About Me
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I am a Computer Science undergraduate who enjoys building real-world applications and solving algorithmic problems.  
+I work with **C++, Node.js, PostgreSQL, and Flutter**, and I am exploring **machine learning and scalable system design**.  
+I like turning ideas into functional products and continuously improving through hands-on projects.
+
+---
+
+## 🚀 Tech Stack
+
+- **Flutter (Web)**
+- **Dart**
+- **Firebase Hosting**
+- **GitHub Actions (CI/CD)**
+- **HTML (web/index.html customizations)**
+
+---
+
+## ✨ Features
+
+- Responsive layout for desktop and mobile
+- Clean and minimal UI design
+- Animated hero section (typewriter effect)
+- About, Skills, and Projects sections
+- Smooth scrolling navigation
+- Secure HTTPS hosting
+- Automatic deployment on GitHub push
+
+---
