@@ -25,7 +25,7 @@ class DrawerMobile extends StatelessWidget {
                     text: const TextSpan(
                       children: [
                         TextSpan(
-                          text: "ANKIT",
+                          text: "ANKIT KANDULNA",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
@@ -46,7 +46,7 @@ class DrawerMobile extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   const Text(
-                    "Flutter Developer",
+                    "Software Developer",
                     style: TextStyle(
                       fontSize: 12,
                       color: CustomColor.textMuted,
