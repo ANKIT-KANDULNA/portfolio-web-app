@@ -32,7 +32,7 @@ class _SiteLogoState extends State<SiteLogo> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "ANKIT",
+                  text: "ANKIT KANDULNA",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,

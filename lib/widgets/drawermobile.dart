@@ -10,7 +10,7 @@ class DrawerMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: CustomColor.bgSecondary,
+      backgroundColor: const Color(0xFF0A2744),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
