@@ -13,7 +13,7 @@ class ProjectsSection extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF1B5E8A), Color(0xFF0D3B60)],
+          colors: [Color(0xFF0D3B60), Color(0xFF0A2744)],
         ),
       ),
       child: Column(

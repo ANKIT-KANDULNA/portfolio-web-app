@@ -3,6 +3,10 @@ import 'package:myportfolio/constants/size.dart';
 import 'package:myportfolio/widgets/about.dart';
 import 'package:myportfolio/widgets/contactsection.dart';
 import 'package:myportfolio/widgets/drawermobile.dart';
+import 'package:myportfolio/widgets/educationmobile.dart';
+import 'package:myportfolio/widgets/educationsection.dart';
+import 'package:myportfolio/widgets/experiencemobile.dart';
+import 'package:myportfolio/widgets/experiencesection.dart';
 import 'package:myportfolio/widgets/footer.dart';
 import 'package:myportfolio/widgets/headerdesktop.dart';
 import 'package:myportfolio/widgets/headermobile.dart';
@@ -14,14 +18,14 @@ import 'package:myportfolio/widgets/skillsmobile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  @override State<HomePage> createState() => _HomePageState();
+  @override
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scrollCtrl  = ScrollController();
-  final List<GlobalKey> _keys = List.generate(5, (_) => GlobalKey());
-
+  final List<GlobalKey> _keys = List.generate(7, (_) => GlobalKey());
   bool _isScrolled = false;
 
   @override
@@ -54,28 +58,30 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         key: _scaffoldKey,
         backgroundColor: const Color(0xFFF0F9FF),
-        endDrawer: isDesktop ? null : DrawerMobile(
-          onNavItemTap: (i) {
-            _scaffoldKey.currentState?.closeEndDrawer();
-            _scrollTo(i);
-          },
-        ),
+        endDrawer: isDesktop
+            ? null
+            : DrawerMobile(
+                onNavItemTap: (i) {
+                  _scaffoldKey.currentState?.closeEndDrawer();
+                  _scrollTo(i);
+                },
+              ),
         body: Stack(children: [
-          // ── Content ──
+
           SingleChildScrollView(
             controller: _scrollCtrl,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // 0 - Home anchor
-                SizedBox(key: _keys[0]),
 
+                // 0 ── Home (surface)
+                SizedBox(key: _keys[0]),
                 if (isDesktop) const MainDesktop() else const MainMobile(),
 
-                // 1 - About (shallow water)
+                // 1 ── About (shallow)
                 About(key: _keys[1]),
 
-                // 2 - Skills (mid water)
+                // 2 ── Skills (mid water)
                 Container(
                   key: _keys[2],
                   padding: const EdgeInsets.fromLTRB(40, 80, 40, 88),
@@ -98,19 +104,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: const Text("SKILLS", style: TextStyle(
                         fontSize: 10, letterSpacing: 3,
-                        color: Color(0xFF00D4FF),
+                        color: Colors.white,
                         fontWeight: FontWeight.w700,
                       )),
                     ),
                     const SizedBox(height: 16),
-                    const Text("Tech Stack",
-                      style: TextStyle(fontSize: 40,
-                          fontWeight: FontWeight.w900, color: Colors.white,
-                          letterSpacing: -0.5)),
+                    const Text("Tech Stack", style: TextStyle(
+                        fontSize: 40, fontWeight: FontWeight.w900,
+                        color: Colors.white, letterSpacing: -0.5)),
                     const SizedBox(height: 8),
                     Text("Tools I swim with daily",
-                      style: TextStyle(fontSize: 15,
-                          color: Colors.white.withOpacity(0.6))),
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.6))),
                     const SizedBox(height: 48),
                     if (constraints.maxWidth >= kMedDestopWidth)
                       const SkillsDesktop()
@@ -119,13 +125,24 @@ class _HomePageState extends State<HomePage> {
                   ]),
                 ),
 
-                // 3 - Projects (deep zone)
-                ProjectsSection(key: _keys[3]),
+                // 3 ── Experience
+                if (constraints.maxWidth >= kMinDestopWidth)
+                  ExperienceSection(key: _keys[3])
+                else
+                  ExperienceMobile(key: _keys[3]),
 
-                // 4 - Contact (abyss)
-                ContactSection(key: _keys[4]),
+                // 4 ── Projects
+                ProjectsSection(key: _keys[4]),
 
-                // Footer (trench)
+                // 5 ── Education
+                if (constraints.maxWidth >= kMinDestopWidth)
+                  EducationSection(key: _keys[5])
+                else
+                  EducationMobile(key: _keys[5]),
+
+                // 6 ── Contact
+                ContactSection(key: _keys[6]),
+
                 const Footer(),
               ],
             ),

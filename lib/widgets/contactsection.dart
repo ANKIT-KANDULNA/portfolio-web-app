@@ -56,7 +56,7 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 88, horizontal: 40),
-      color: const Color(0xFF0A2744),
+      color: const Color(0xFF061830),
       child: Column(
         children: [
           // ── Tag ──

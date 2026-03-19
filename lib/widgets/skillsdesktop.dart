@@ -145,7 +145,7 @@ class _SkillChipState extends State<_SkillChip>
               const SizedBox(width: 10),
               Text(widget.item['title'], style: TextStyle(
                 fontSize: 13, fontWeight: FontWeight.w600,
-                color: _hovered ? const Color(0xFF00D4FF) : Colors.white,
+                color: Colors.white,
                 letterSpacing: 0.3,
               )),
             ],

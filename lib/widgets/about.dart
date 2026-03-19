@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/constants/colors.dart';
 
 class About extends StatefulWidget {
   const About({super.key});
-  @override State<About> createState() => _AboutState();
+  @override
+  State<About> createState() => _AboutState();
 }
 
 class _AboutState extends State<About> with SingleTickerProviderStateMixin {
@@ -27,13 +27,13 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // Shallow water — medium blue
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 88, horizontal: 48),
       width: double.maxFinite,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
           colors: [Color(0xFF4A90C4), Color(0xFF2C7AAE)],
         ),
       ),
@@ -41,10 +41,65 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
         opacity: _fade,
         child: SlideTransition(
           position: _slide,
-          child: LayoutBuilder(
-            builder: (context, constraints) => constraints.maxWidth > 720
-                ? _WideLayout()
-                : _NarrowLayout(),
+          child: Column(
+            // ── Everything centered, just like Tech Stack ──
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+
+              // ── Tag ──
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(
+                      color: Colors.white.withOpacity(0.4)),
+                ),
+                child: const Text("ABOUT", style: TextStyle(
+                  fontSize: 10, letterSpacing: 3,
+                  color: Colors.white, fontWeight: FontWeight.w700,
+                )),
+              ),
+
+              const SizedBox(height: 16),
+
+              // ── Title ──
+              const Text(
+                "A bit about me",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 44, fontWeight: FontWeight.w900,
+                  color: Colors.white, letterSpacing: -1, height: 1.1,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              // ── Subtitle ──
+              Text(
+                "CS undergraduate passionate about turning ideas into functional products.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white.withOpacity(0.65),
+                  height: 1.6,
+                ),
+              ),
+
+              const SizedBox(height: 52),
+
+              // ── Info rows — constrained width, left-aligned text ──
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: LayoutBuilder(
+                  builder: (context, constraints) =>
+                      constraints.maxWidth > 600
+                          ? _WideInfoGrid()
+                          : _NarrowInfoList(),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -52,128 +107,126 @@ class _AboutState extends State<About> with SingleTickerProviderStateMixin {
   }
 }
 
-class _WideLayout extends StatelessWidget {
+// ── 2x2 grid on desktop ──
+class _WideInfoGrid extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SizedBox(width: 260, child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _SectionTag("ABOUT"),
-          const SizedBox(height: 18),
-          const Text("A bit\nabout me",
-            style: TextStyle(fontSize: 44, fontWeight: FontWeight.w900,
-              color: Colors.white, height: 1.1, letterSpacing: -1)),
-          const SizedBox(height: 22),
-          Container(width: 56, height: 4,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF00D4FF), Color(0xFF00B4A0)]),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-          const SizedBox(height: 28),
-          Text("CS undergraduate passionate about turning ideas into functional products.",
-            style: TextStyle(fontSize: 14, height: 1.7,
-                color: Colors.white.withOpacity(0.75))),
-        ],
-      )),
-      const SizedBox(width: 64),
-      Expanded(child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          _InfoRow(icon: Icons.school_outlined,
-            title: "CS Undergraduate",
-            subtitle: "Building real-world applications and solving algorithmic problems."),
-          SizedBox(height: 22),
-          _InfoRow(icon: Icons.code_outlined,
-            title: "Full Stack + Flutter",
-            subtitle: "Experience in C++ (DSA), web development, and cross-platform mobile apps."),
-          SizedBox(height: 22),
-          _InfoRow(icon: Icons.psychology_outlined,
-            title: "Exploring ML & Systems",
-            subtitle: "Delving into machine learning and scalable system design patterns."),
-          SizedBox(height: 22),
-          _InfoRow(icon: Icons.lightbulb_outlined,
-            title: "Builder Mindset",
-            subtitle: "Turning ideas into functional products, learning from others, and contributing wherever I can."),
-        ],
-      )),
-    ],
-  );
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _InfoRow(
+              icon: Icons.school_outlined,
+              title: "CS Undergraduate",
+              subtitle: "Building real-world applications and solving algorithmic problems.",
+            )),
+            SizedBox(width: 24),
+            Expanded(child: _InfoRow(
+              icon: Icons.code_outlined,
+              title: "Full Stack + Flutter",
+              subtitle: "Experience in C++ (DSA), web development, and cross-platform mobile apps.",
+            )),
+          ],
+        ),
+        const SizedBox(height: 28),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _InfoRow(
+              icon: Icons.psychology_outlined,
+              title: "Exploring ML & Systems",
+              subtitle: "Delving into machine learning and scalable system design patterns.",
+            )),
+            SizedBox(width: 24),
+            Expanded(child: _InfoRow(
+              icon: Icons.lightbulb_outlined,
+              title: "Builder Mindset",
+              subtitle: "Turning ideas into functional products, learning from others, and contributing wherever I can.",
+            )),
+          ],
+        ),
+      ],
+    );
+  }
 }
 
-class _NarrowLayout extends StatelessWidget {
+// ── Single column on mobile ──
+class _NarrowInfoList extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      _SectionTag("ABOUT"),
-      const SizedBox(height: 14),
-      const Text("A bit about me",
-        style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900,
-          color: Colors.white, letterSpacing: -0.5)),
-      const SizedBox(height: 32),
-      const _InfoRow(icon: Icons.school_outlined, title: "CS Undergraduate",
-          subtitle: "Building real-world applications."),
-      const SizedBox(height: 18),
-      const _InfoRow(icon: Icons.code_outlined, title: "Full Stack + Flutter",
-          subtitle: "C++, web, and mobile development."),
-      const SizedBox(height: 18),
-      const _InfoRow(icon: Icons.psychology_outlined, title: "Exploring ML",
-          subtitle: "Machine learning & scalable systems."),
-      const SizedBox(height: 18),
-      const _InfoRow(icon: Icons.lightbulb_outlined, title: "Builder Mindset",
-          subtitle: "Turning ideas into functional products."),
-    ],
-  );
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        _InfoRow(
+          icon: Icons.school_outlined,
+          title: "CS Undergraduate",
+          subtitle: "Building real-world applications and solving algorithmic problems.",
+        ),
+        SizedBox(height: 22),
+        _InfoRow(
+          icon: Icons.code_outlined,
+          title: "Full Stack + Flutter",
+          subtitle: "C++, web, and mobile development.",
+        ),
+        SizedBox(height: 22),
+        _InfoRow(
+          icon: Icons.psychology_outlined,
+          title: "Exploring ML",
+          subtitle: "Machine learning & scalable systems.",
+        ),
+        SizedBox(height: 22),
+        _InfoRow(
+          icon: Icons.lightbulb_outlined,
+          title: "Learning Mindset",
+          subtitle: "I like learning new things and technologies.",
+        ),
+      ],
+    );
+  }
 }
 
 class _InfoRow extends StatelessWidget {
-  final IconData icon; final String title; final String subtitle;
-  const _InfoRow({required this.icon, required this.title, required this.subtitle});
-  @override
-  Widget build(BuildContext context) => Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.12),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white.withOpacity(0.2)),
-        ),
-        child: Icon(icon, color: const Color(0xFF00D4FF), size: 20),
-      ),
-      const SizedBox(width: 16),
-      Expanded(child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: const TextStyle(fontSize: 15,
-              fontWeight: FontWeight.w700, color: Colors.white)),
-          const SizedBox(height: 4),
-          Text(subtitle, style: TextStyle(fontSize: 14, height: 1.6,
-              color: Colors.white.withOpacity(0.72))),
-        ],
-      )),
-    ],
-  );
-}
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  const _InfoRow({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+  });
 
-class _SectionTag extends StatelessWidget {
-  final String label;
-  const _SectionTag(this.label);
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.15),
-      borderRadius: BorderRadius.circular(6),
-      border: Border.all(color: Colors.white.withOpacity(0.3)),
-    ),
-    child: Text(label, style: const TextStyle(
-      fontSize: 10, letterSpacing: 3,
-      color: Color(0xFF00D4FF), fontWeight: FontWeight.w700)),
-  );
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.white.withOpacity(0.2)),
+          ),
+          child: Icon(icon, color: const Color(0xFF00D4FF), size: 20),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(
+                fontSize: 15, fontWeight: FontWeight.w700,
+                color: Colors.white,
+              )),
+              const SizedBox(height: 5),
+              Text(subtitle, style: TextStyle(
+                fontSize: 13, height: 1.6,
+                color: Colors.white.withOpacity(0.65),
+              )),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
