@@ -141,8 +141,8 @@ class _WideInfoGrid extends StatelessWidget {
             SizedBox(width: 24),
             Expanded(child: _InfoRow(
               icon: Icons.lightbulb_outlined,
-              title: "Builder Mindset",
-              subtitle: "Turning ideas into functional products, learning from others, and contributing wherever I can.",
+              title: "Learning Mindset",
+              subtitle: "Learning new things and contributing wherever I can.",
             )),
           ],
         ),

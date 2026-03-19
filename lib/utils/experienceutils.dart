@@ -30,7 +30,7 @@ List<ExperienceUtils> experienceList = [
     duration: "Jun 2025 - Aug 2025",
     location: "Remote / Delhi, India",
     type: "Internship",
-    logo: "companies/flutter-logo.png",
+    logo: "assets/companies/flutter-logo.png",
     points: [
       "Built and shipped X feature that improved Y by Z%.",
       "Collaborated with a team of N engineers on cross-platform app.",

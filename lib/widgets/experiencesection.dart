@@ -161,6 +161,8 @@ class _ExperienceCard extends StatefulWidget {
 class _ExperienceCardState extends State<_ExperienceCard> {
   bool _hovered = false;
 
+  Color get _accent =>  const Color(0xFF00D4FF);
+
   @override
   Widget build(BuildContext context) {
     final e = widget.experience;
@@ -209,25 +211,14 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                       )),
                       const SizedBox(height: 6),
                       // Company name — tappable if URL exists
-                      GestureDetector(
-                        onTap: e.companyUrl != null
-                            ? () => openLink(e.companyUrl!)
-                            : null,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(e.company, style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600,
-                              color: Color(0xFF00D4FF),
-                            )),
-                            if (e.companyUrl != null) ...[
-                              const SizedBox(width: 4),
-                              const Icon(Icons.open_in_new_rounded,
-                                  size: 13, color: Color(0xFF00D4FF)),
-                            ],
-                          ],
-                        ),
+                      // Institution
+                      _ClickableUrl(
+                        label: e.company,
+                        url: e.companyUrl,
+                        accent: _accent,
                       ),
+
+                      const SizedBox(height: 8),
                     ],
                   ),
                 ),
@@ -387,4 +378,91 @@ class _SectionHeader extends StatelessWidget {
     Text(subtitle, style: TextStyle(
         fontSize: 15, color: Colors.white.withOpacity(0.5))),
   ]);
+}
+
+
+class _ClickableUrl extends StatefulWidget {
+  final String label;
+  final String? url;
+  final Color accent;
+  const _ClickableUrl({
+    required this.label,
+    required this.url,
+    required this.accent,
+  });
+  @override
+  State<_ClickableUrl> createState() => _ClickableUrlState();
+}
+
+class _ClickableUrlState extends State<_ClickableUrl> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit:  (_) => setState(() => _hovered = false),
+      cursor: widget.url != null
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
+      child: GestureDetector(
+        onTap: widget.url != null ? () => openLink(widget.url!) : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: _hovered && widget.url != null
+                ? widget.accent.withOpacity(0.08)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: _hovered && widget.url != null
+                  ? widget.accent.withOpacity(0.35)
+                  : Colors.transparent,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.account_balance_outlined,
+                size: 15,
+                color: _hovered && widget.url != null
+                    ? widget.accent
+                    : Colors.white54,
+              ),
+              const SizedBox(width: 8),
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 180),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: _hovered && widget.url != null
+                      ? widget.accent
+                      : Colors.white.withOpacity(0.8),
+                  decoration: _hovered && widget.url != null
+                      ? TextDecoration.underline
+                      : TextDecoration.none,
+                  decorationColor: widget.accent,
+                ),
+                child: Text(widget.label),
+              ),
+              if (widget.url != null) ...[
+                const SizedBox(width: 6),
+                AnimatedOpacity(
+                  opacity: _hovered ? 1.0 : 0.3,
+                  duration: const Duration(milliseconds: 180),
+                  child: Icon(
+                    Icons.open_in_new_rounded,
+                    size: 13,
+                    color: _hovered ? widget.accent : Colors.white38,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

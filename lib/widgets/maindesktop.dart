@@ -128,7 +128,7 @@ class _MainDesktopState extends State<MainDesktop>
                                 colors: [Color(0xFF1B5E8A), Color(0xFF00B4A0)],
                               ).createShader(b),
                               child: const Text(
-                                "Software Developer  ·  CS Undergraduate  ·  Builder",
+                                "Software Developer  ·  CS Undergraduate  ·  Learner",
                                 style: TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.w600,
                                   color: Colors.white, letterSpacing: 0.4,
@@ -195,7 +195,7 @@ class _MainDesktopState extends State<MainDesktop>
                                 child: Container(
                                   width: 255, height: 255,
                                   color: const Color(0xFFB3D9F2),
-                                  child: Image.asset("whale.png",
+                                  child: Image.asset("assets/whale.png",
                                     fit: BoxFit.cover,
                                     errorBuilder: (_, __, ___) => const Icon(
                                       Icons.person, size: 80,

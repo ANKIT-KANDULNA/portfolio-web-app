@@ -31,7 +31,7 @@ List<EducationUtils> educationList = [
     duration: "2023 - 2027",
     grade: "7.72 CGPA",
     location: "Delhi, India",
-    logo: "education/dtu-logo.png",
+    logo: "assets/education/dtu-logo.png",
     highlights: [
       "Relevant coursework: DSA, OS, DBMS, Computer Networks.",
     ],
@@ -44,7 +44,7 @@ List<EducationUtils> educationList = [
     duration: "2022 - 2023",
     grade: "83.8%",
     location: "Delhi, India",
-    logo: "education/rosary-logo.png",
+    logo: "assets/education/rosary-logo.png",
     highlights: [
       "Scored 83.8% in CBSE Board Examinations.",
     ],
@@ -57,7 +57,7 @@ List<EducationUtils> educationList = [
     duration: "2020 - 2021",
     grade: "77%",
     location: "Delhi, India",
-    logo: "education/rosary-logo.png",
+    logo: "assets/education/rosary-logo.png",
     highlights: [
       "Scored 77% in CBSE Board Examinations.",
     ],
