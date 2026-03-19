@@ -71,7 +71,7 @@ class _MainMobileState extends State<MainMobile>
                   child: Container(
                     width: 190, height: 190,
                     color: const Color(0xFFB3D9F2),
-                    child: Image.asset("assets/whale.png", fit: BoxFit.cover,
+                    child: Image.asset("assets/gemini-pic.png", fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => const Icon(
                           Icons.person, size: 60, color: CustomColor.deep)),
                   ),

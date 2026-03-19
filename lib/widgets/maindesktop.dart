@@ -195,7 +195,7 @@ class _MainDesktopState extends State<MainDesktop>
                                 child: Container(
                                   width: 255, height: 255,
                                   color: const Color(0xFFB3D9F2),
-                                  child: Image.asset("assets/whale.png",
+                                  child: Image.asset("assets/gemini-pic.png",
                                     fit: BoxFit.cover,
                                     errorBuilder: (_, __, ___) => const Icon(
                                       Icons.person, size: 80,
