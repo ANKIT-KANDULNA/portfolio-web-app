@@ -67,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
         body: Stack(children: [
-
           SingleChildScrollView(
             controller: _scrollCtrl,
             child: Column(
