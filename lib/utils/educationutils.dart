@@ -29,7 +29,7 @@ List<EducationUtils> educationList = [
     degree: "Bachelor of Technology",
     field: "Computer Science & Engineering",
     duration: "2023 - 2027",
-    grade: "7.72 CGPA",
+    grade: "7.62 CGPA",
     location: "Delhi, India",
     logo: "assets/education/dtu-logo.png",
     highlights: [
