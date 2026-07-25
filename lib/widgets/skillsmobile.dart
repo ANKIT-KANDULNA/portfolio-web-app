@@ -9,10 +9,15 @@ class SkillsMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        _MobileSkillGroup(label: "PLATFORMS & DOMAINS", items: platformItems),
-        SizedBox(height: 32),
-        _MobileSkillGroup(label: "LANGUAGES & TOOLS",   items: skillItems),
+      children: [
+        for (int i = 0; i < skillCategories.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 32),
+            child: _MobileSkillGroup(
+              label: skillCategories[i]['title'].toString().toUpperCase(),
+              items: (skillCategories[i]['items'] as List).cast<Map>(),
+            ),
+          ),
       ],
     );
   }

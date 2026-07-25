@@ -5,17 +5,54 @@ import 'package:myportfolio/constants/skillitems.dart';
 class SkillsDesktop extends StatelessWidget {
   const SkillsDesktop({super.key});
 
+  IconData _getIconForCategory(String title) {
+    if (title.contains("Languages")) return Icons.code_rounded;
+    if (title.contains("Frontend")) return Icons.web_rounded;
+    if (title.contains("Backend")) return Icons.dns_rounded;
+    if (title.contains("Databases")) return Icons.storage_rounded;
+    if (title.contains("AI") || title.contains("Machine")) return Icons.psychology_rounded;
+    if (title.contains("Mobile")) return Icons.phone_android_rounded;
+    if (title.contains("Game")) return Icons.sports_esports_rounded;
+    if (title.contains("Cloud") || title.contains("DevOps")) return Icons.cloud_rounded;
+    if (title.contains("Fundamentals")) return Icons.menu_book_rounded;
+    if (title.contains("Platforms")) return Icons.devices_rounded;
+    return Icons.build_rounded;
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Split by item count (not category count) for visual balance
+    final int totalItems = skillCategories.fold<int>(
+        0, (sum, cat) => sum + (cat['items'] as List).length);
+    final int halfItems = totalItems ~/ 2;
+    int cumulative = 0;
+    int splitIndex = 1;
+    for (int i = 0; i < skillCategories.length; i++) {
+      cumulative += (skillCategories[i]['items'] as List).length;
+      if (cumulative >= halfItems) {
+        splitIndex = i + 1;
+        break;
+      }
+    }
+    final int halfIndex = splitIndex;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // ── LEFT: Platforms & Domains ──
+        // ── LEFT COLUMN ──
         Expanded(
-          child: _SkillColumn(
-            label: "PLATFORMS & DOMAINS",
-            icon: Icons.devices_rounded,
-            items: platformItems,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (int i = 0; i < halfIndex; i++)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 32),
+                  child: _SkillColumn(
+                    label: skillCategories[i]['title'].toString().toUpperCase(),
+                    icon: _getIconForCategory(skillCategories[i]['title'].toString()),
+                    items: (skillCategories[i]['items'] as List).cast<Map>(),
+                  ),
+                ),
+            ],
           ),
         ),
 
@@ -26,12 +63,21 @@ class SkillsDesktop extends StatelessWidget {
           color: Colors.white.withOpacity(0.15),
         ),
 
-        // ── RIGHT: Languages & Tools ──
+        // ── RIGHT COLUMN ──
         Expanded(
-          child: _SkillColumn(
-            label: "LANGUAGES & TOOLS",
-            icon: Icons.code_rounded,
-            items: skillItems,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (int i = halfIndex; i < skillCategories.length; i++)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 32),
+                  child: _SkillColumn(
+                    label: skillCategories[i]['title'].toString().toUpperCase(),
+                    icon: _getIconForCategory(skillCategories[i]['title'].toString()),
+                    items: (skillCategories[i]['items'] as List).cast<Map>(),
+                  ),
+                ),
+            ],
           ),
         ),
       ],
