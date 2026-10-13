@@ -19,14 +19,21 @@ class ProjectUtils {
 }
 
 List<ProjectUtils> projectUtils = [
+  // ProjectUtils(
+  //   image: 'assets/projects/02.png',
+  //   title: 'WEB DEV',
+  //   subtitle: 'FAAAH',
+  //   androidLink: 'https://google.com/',
+  //   iosLink: 'https://google.com/',
+  //   webLink: 'https://google.com/',
+  //   githubLink: 'https://github.com/ANKIT-KANDULNA/',
+  // ),
   ProjectUtils(
-    image: 'assets/projects/02.png',
-    title: 'WEB DEV',
-    subtitle: 'FAAAH',
-    androidLink: 'https://google.com/',
-    iosLink: 'https://google.com/',
-    webLink: 'https://google.com/',
-    githubLink: 'https://github.com/ANKIT-KANDULNA/',
+    image: 'assets/projects/crackmycsai.png',
+    title: 'CrackMyCS AI',
+    subtitle: 'CrackMyCS AI is AI-powered Retrieval-Augmented Generation system to help students prepare for technical interviews by answering queries on core CS subjects',
+    webLink: 'https://crack-my-cs-ai-eight.vercel.app/',
+    githubLink: 'https://github.com/ANKIT-KANDULNA/CrackMyCS-AI',
   ),
   ProjectUtils(
     image: 'assets/projects/mentor-platform.png',
